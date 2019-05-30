@@ -1,0 +1,104 @@
+Index: Unit/ExampleTest.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Unit/ExampleTest.php	(date 1552227728574)
++++ Unit/ExampleTest.php	(date 1552227728574)
+@@ -0,0 +1,19 @@
++<?php
++
++namespace Tests\Unit;
++
++use Tests\TestCase;
++use Illuminate\Foundation\Testing\RefreshDatabase;
++
++class ExampleTest extends TestCase
++{
++    /**
++     * A basic test example.
++     *
++     * @return void
++     */
++    public function testBasicTest()
++    {
++        $this->assertTrue(true);
++    }
++}
+Index: Feature/ExampleTest.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Feature/ExampleTest.php	(date 1552227728567)
++++ Feature/ExampleTest.php	(date 1552227728567)
+@@ -0,0 +1,21 @@
++<?php
++
++namespace Tests\Feature;
++
++use Tests\TestCase;
++use Illuminate\Foundation\Testing\RefreshDatabase;
++
++class ExampleTest extends TestCase
++{
++    /**
++     * A basic test example.
++     *
++     * @return void
++     */
++    public function testBasicTest()
++    {
++        $response = $this->get('/');
++
++        $response->assertStatus(200);
++    }
++}
+Index: CreatesApplication.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- CreatesApplication.php	(date 1552227728553)
++++ CreatesApplication.php	(date 1552227728553)
+@@ -0,0 +1,22 @@
++<?php
++
++namespace Tests;
++
++use Illuminate\Contracts\Console\Kernel;
++
++trait CreatesApplication
++{
++    /**
++     * Creates the application.
++     *
++     * @return \Illuminate\Foundation\Application
++     */
++    public function createApplication()
++    {
++        $app = require __DIR__.'/../bootstrap/app.php';
++
++        $app->make(Kernel::class)->bootstrap();
++
++        return $app;
++    }
++}
+Index: TestCase.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- TestCase.php	(date 1552227728574)
++++ TestCase.php	(date 1552227728574)
+@@ -0,0 +1,10 @@
++<?php
++
++namespace Tests;
++
++use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
++
++abstract class TestCase extends BaseTestCase
++{
++    use CreatesApplication;
++}
